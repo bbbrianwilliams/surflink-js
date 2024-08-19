@@ -168,3 +168,19 @@ export const everyNth = (arr, nth) => {
   const newArr = arr.filter((e, i) => i % nth === nth - 1);
   return newArr;
 };
+
+export const getDayOfWeek = (timestamp) => {
+  const a = new Date(timestamp * 1000);
+  const days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  const dayOfWeek = days[a.getDay()];
+
+  return dayOfWeek;
+}

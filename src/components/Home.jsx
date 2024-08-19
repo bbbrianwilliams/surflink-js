@@ -22,7 +22,7 @@ export default function Home() {
     onInputChange,
   } = useFetch();
   return (
-    <div className="flex justify-center items-center h-[100vh] w-full">
+    <div className="flex justify-center items-center h-full w-full">
       {loading ? (
         <div>Loading...</div>
       ) : currentSpotConditions ? (

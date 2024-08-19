@@ -7,16 +7,16 @@ import {
 } from "react-accessible-accordion";
 import SurfInfoTile from "./SurfInfoTile";
 import { useEffect, useState } from "react";
-import { getTimestampHour, everyNth, getTimestampClockTime } from "../helpers";
+import { getTimestampHour, everyNth, getTimestampClockTime, getDayOfWeek } from "../helpers";
 
 const weekDays = [
+  "Sunday",
   "Monday",
   "Tuesday",
   "Wednesday",
   "Thursday",
   "Friday",
   "Saturday",
-  "Sunday",
 ];
 
 export default function ForeCastSurf({
@@ -29,13 +29,12 @@ export default function ForeCastSurf({
   weatherData,
   sunlightData,
 }) {
-  const dayOfWeek = new Date().getDay();
-
-  const forecastDays = weekDays
-    .slice(dayOfWeek, weekDays.length)
-    .concat(weekDays.slice(0, dayOfWeek));
-
   const forecastSurfArray = forecastData.data.surf;
+
+  const dayInAWeek = new Date().getDay();
+  const forecastDays = weekDays
+    .slice(dayInAWeek, weekDays.length)
+    .concat(weekDays.slice(0, dayInAWeek));
 
   const forecastSurfThirdHour = forecastSurfArray.filter((_, i) => {
     return i % 3 == 0;
@@ -45,9 +44,11 @@ export default function ForeCastSurf({
     return i % 6 == 0;
   });
 
-  const forecastSurfDaily = forecastSurfArray.filter((_, i)=> {
-    return i % 24 == 0
-  })
+  const forecastSurfDaily = forecastSurfArray.filter((_, i) => {
+    return i % 24 == 0;
+  });
+
+  console.log(forecastSurfDaily);
 
   
 
@@ -69,17 +70,23 @@ export default function ForeCastSurf({
       <div>
         <label>Daily</label>
         <Accordion allowZeroExpanded>
-          {forecastSurfSixthHour.slice(1, 16).map((item, index) => (
+          {forecastSurfDaily.slice(0, 4).map((item, index) => (
             <AccordionItem key={index}>
               <AccordionItemHeading>
                 <AccordionItemButton>
                   <div>
-                    <label>{item.timestamp}</label>
-                    
+                    <p>{getDayOfWeek(item.timestamp)}</p>
                   </div>
                 </AccordionItemButton>
               </AccordionItemHeading>
-              <AccordionItemPanel></AccordionItemPanel>
+              <AccordionItemPanel>
+                <div>
+                  <label>Surf height</label>
+                  <div>
+                    {item.surf.min}-{item.surf.max}ft
+                  </div>
+                </div>
+              </AccordionItemPanel>
             </AccordionItem>
           ))}
         </Accordion>
