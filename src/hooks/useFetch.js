@@ -14,6 +14,7 @@ export default function useFetch() {
   const [weather, setWeather] = useState(null);
   const [rating, setRating] = useState(null);
   const [sunlight, setSunlight] = useState(null);
+  const [dayData, setDayData] = useState(null)
 
   //get search options on every keystroke of input field
   function onInputChange(e) {
@@ -61,7 +62,7 @@ export default function useFetch() {
       `https://services.surfline.com/kbyg/spots/reports?spotId=${spot._id}&accesstoken=${process.env.REACT_APP_ACCESS_TOKEN}`
     );
     const forecastSurfFetch = fetch(
-      `${process.env.REACT_APP_FORECAST_SURF_BASE_URL}/surf?cacheEnabled=true&days=16&intervalHours=1&spotId=${spot._id}&units%5BwaveHeight%5D=HI&accesstoken=${process.env.REACT_APP_ACCESS_TOKEN}`
+      `${process.env.REACT_APP_FORECAST_SURF_BASE_URL}/surf?cacheEnabled=true&days=4&intervalHours=1&spotId=${spot._id}&units%5BwaveHeight%5D=HI&accesstoken=${process.env.REACT_APP_ACCESS_TOKEN}`
     );
     const swellFetch = fetch(
       `${process.env.REACT_APP_FORECAST_SURF_BASE_URL}/swells?cacheEnabled=true&days=16&intervalHours=1&spotId=${spot._id}&units%5BswellHeight%5D=FT&accesstoken=${process.env.REACT_APP_ACCESS_TOKEN}`

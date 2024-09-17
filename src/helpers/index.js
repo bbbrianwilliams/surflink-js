@@ -126,12 +126,14 @@ export const getTimestampHour = (getTimestamp) => {
   let hours = timestamp.getHours();
   let timeHours;
 
-  if (hours > 0 && hours <= 12) {
-    timeHours = hours;
+  if (hours > 0 && hours < 12) {
+    timeHours = `${hours}am`;
   } else if (hours > 12) {
-    timeHours = hours - 12;
+    timeHours = `${hours - 12}pm`;
   } else if (hours === 0) {
-    timeHours = "12";
+    timeHours = "12am";
+  } else if (hours === 12) {
+    timeHours = "12pm";
   }
 
   return timeHours;
@@ -183,4 +185,35 @@ export const getDayOfWeek = (timestamp) => {
   const dayOfWeek = days[a.getDay()];
 
   return dayOfWeek;
-}
+};
+
+export const getTodayForecast = (getForecastSurf) => {
+
+  const todayForecast = getForecastSurf.slice(0, 24);
+
+  return todayForecast;
+};
+
+/* export const getDay2Forecast = (getForecastSurf) => {
+  const day2Forecast = getForecastSurf.slice(24, 48);
+
+  return day2Forecast;
+};
+export const getDay3Forecast = (getForecastSurf) => {
+  const day3Forecast = getForecastSurf.slice(48, 72);
+
+  return day3Forecast;
+};
+export const getDay4Forecast = (getForecastSurf) => {
+  const day4Forecast = getForecastSurf.slice(72, 96);
+
+  return day4Forecast;
+}; */
+
+export const getSixHourUpdate = (getDayForecast) => {
+  const sixHourForecastArray = getDayForecast.filter((_, i) => {
+    return i % 6 == 0;
+  });
+};
+
+

@@ -11,6 +11,9 @@ export default function CurrentSpotConditions({ currentSpotData }) {
   const { conditions, swells, tide, waterTemp, waveHeight, weather, wind } =
     currentSpotData.forecast;
 
+    
+    
+
   return (
     <>
       <div className="w-full py-10 h-full rounded">

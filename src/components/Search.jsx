@@ -1,3 +1,4 @@
+import Header from "./Header";
 import Suggestions from "./Suggestions";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 
@@ -13,7 +14,8 @@ export default function Search({
   };
 
   return (
-    <div className="w-full md:max-w-[500px] p-4 flex flex-col text-center items-center justify-center md:px-4 lg:p-10 h-full lg:h-[25px] bg-white bg-opacity-20 backdrop-blur-ls rounded drop-shadow-lg text-black-700">
+    <div className="mt-10 w-full md:max-w-[500px] p-4 flex flex-col text-center items-center justify-center md:px-4 lg:p-10 h-full lg:h-auto bg-white bg-opacity-30 backdrop-blur-ls rounded drop-shadow-lg text-black-700">
+      <Header />
       <div className="relative flex mt-10 md:mt-4">
         <input
           type="text"
