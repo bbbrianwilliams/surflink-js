@@ -17,6 +17,13 @@ import {
   getWindDirection,
   convertTime,
 } from "../helpers";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faArrowDown,
+  faLocationArrow,
+  faDownLong,
+  faCaretDown,
+} from "@fortawesome/free-solid-svg-icons";
 
 const weekDays = [
   "Sunday",
@@ -326,7 +333,7 @@ export default function ForeCastSurf({
 
   return (
     <>
-      <div>
+      <div className="bg-slate-200 lg:w-full md:max-w-[500px]">
         <Accordion allowZeroExpanded>
           {dayData && dayData.length > 0
             ? dayData.map((dayItem, idx) => (
@@ -340,37 +347,49 @@ export default function ForeCastSurf({
                   </AccordionItemHeading>
                   <AccordionItemPanel>
                     {/* 6am observation */}
-                    <div className="grid grid-cols-4 auto-cols-auto gap-y-0 gap-x-4">
+
+                    <div className="grid grid-cols-4 gap-x-4 divide-y">
                       <div>
+                        <h3 className="opacity-0">Time</h3>
                         <p>{dayItem.sixHourObservations[0].time}</p>
                       </div>
                       <div>
-                        <h3>Surf Height</h3>
+                        <h3 className="font-bold">Surf Height</h3>
                         <p>
                           {dayItem.sixHourObservations[0].surf.min}-
                           {dayItem.sixHourObservations[0].surf.max}ft
                         </p>
                       </div>
                       <div>
-                        <h3>Primary Swell</h3>
+                        <h3 className="font-bold">Primary Swell</h3>
                         <p>
-                          {dayItem.sixHourObservations[0].swell.height.toFixed(1)}
-                          ft @ {dayItem.sixHourObservations[0].swell.period}s
-                          from{" "}
-                          {Math.round(dayItem.sixHourObservations[0].swell.direction)}
+                          {dayItem.sixHourObservations[0].swell.height.toFixed(
+                            1
+                          )}
+                          ft @ {dayItem.sixHourObservations[0].swell.period}s{" "}
+                          {
+                            <FontAwesomeIcon
+                              className="ml-2"
+                              icon={faDownLong}
+                              style={{
+                                transform: `rotateZ(${dayItem.sixHourObservations[0].swell.direction}deg)`,
+                              }}
+                            />
+                          }
                         </p>
                       </div>
                       <div>
-                        <h3>Wind</h3>
+                        <h3 className="font-bold">Wind</h3>
                         <p>
                           {Math.round(
                             dayItem.sixHourObservations[0].wind.speed
                           )}
-                          mph{" "}
-                          {dayItem.sixHourObservations[0].wind.directionType}{" "}
+                          mph
+                          <p className="text-sm">{dayItem.sixHourObservations[0].wind.directionType}</p>
                         </p>
                       </div>
                     </div>
+                    
 
                     {/* 12pm observation */}
                     <div className="grid grid-cols-4 auto-cols-auto gap-y-0 gap-x-4">
@@ -378,32 +397,40 @@ export default function ForeCastSurf({
                         <p>{dayItem.sixHourObservations[1].time}</p>
                       </div>
                       <div>
-                        <h3>Surf Height</h3>
                         <p>
                           {dayItem.sixHourObservations[1].surf.min}-
                           {dayItem.sixHourObservations[1].surf.max}ft
                         </p>
                       </div>
                       <div>
-                        <h3>Primary Swell</h3>
                         <p>
-                          {dayItem.sixHourObservations[1].swell.height.toFixed(1)}
-                          ft @ {dayItem.sixHourObservations[1].swell.period}s
-                          from{" "}
-                          {Math.round(dayItem.sixHourObservations[1].swell.direction)}
+                          {dayItem.sixHourObservations[1].swell.height.toFixed(
+                            1
+                          )}
+                          ft @ {dayItem.sixHourObservations[1].swell.period}s{" "}
+                          {
+                            <FontAwesomeIcon
+                              className="ml-2"
+                              icon={faDownLong}
+                              style={{
+                                transform: `rotateZ(${dayItem.sixHourObservations[0].swell.direction}deg)`,
+                              }}
+                            />
+                          }
                         </p>
                       </div>
                       <div>
-                        <h3>Wind</h3>
                         <p>
                           {Math.round(
                             dayItem.sixHourObservations[1].wind.speed
                           )}
-                          mph{" "}
-                          {dayItem.sixHourObservations[1].wind.directionType}{" "}
+                          mph
+                          <p className="text-sm">{dayItem.sixHourObservations[1].wind.directionType}</p>
                         </p>
                       </div>
                     </div>
+
+                    
 
                     {/* 6pm observation */}
                     <div className="grid grid-cols-4 auto-cols-auto gap-y-0 gap-x-4">
@@ -411,29 +438,35 @@ export default function ForeCastSurf({
                         <p>{dayItem.sixHourObservations[2].time}</p>
                       </div>
                       <div>
-                        <h3>Surf Height</h3>
                         <p>
                           {dayItem.sixHourObservations[2].surf.min}-
                           {dayItem.sixHourObservations[2].surf.max}ft
                         </p>
                       </div>
                       <div>
-                        <h3>Primary Swell</h3>
                         <p>
-                          {(dayItem.sixHourObservations[2].swell.height.toFixed(1))}
-                          ft @ {dayItem.sixHourObservations[2].swell.period}s
-                          from{" "}
-                          {Math.round(dayItem.sixHourObservations[2].swell.direction)}
+                          {dayItem.sixHourObservations[2].swell.height.toFixed(
+                            1
+                          )}
+                          ft @ {dayItem.sixHourObservations[2].swell.period}s{" "}
+                          {
+                            <FontAwesomeIcon
+                              className="ml-2"
+                              icon={faDownLong}
+                              style={{
+                                transform: `rotateZ(${dayItem.sixHourObservations[0].swell.direction}deg)`,
+                              }}
+                            />
+                          }
                         </p>
                       </div>
                       <div>
-                        <h3>Wind</h3>
                         <p>
                           {Math.round(
                             dayItem.sixHourObservations[2].wind.speed
                           )}
-                          mph{" "}
-                          {dayItem.sixHourObservations[2].wind.directionType}{" "}
+                          mph
+                          <p className="text-sm">{dayItem.sixHourObservations[2].wind.directionType}</p>
                         </p>
                       </div>
                     </div>
@@ -446,3 +479,4 @@ export default function ForeCastSurf({
     </>
   );
 }
+

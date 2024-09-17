@@ -26,7 +26,7 @@ export default function Home() {
       {loading ? (
         <div>Loading...</div>
       ) : currentSpotConditions ? (
-        <div className="flex flex-col">
+        <div className="flex-col">
           <Search
             term={term}
             options={options}

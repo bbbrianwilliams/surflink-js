@@ -5,19 +5,21 @@ import {
   convertTime,
 } from "../helpers";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowDown,
+  faLocationArrow,
+  faDownLong,
+  faCaretDown,
+} from "@fortawesome/free-solid-svg-icons";
 
 export default function CurrentSpotConditions({ currentSpotData }) {
   const { conditions, swells, tide, waterTemp, waveHeight, weather, wind } =
     currentSpotData.forecast;
 
-    
-    
-
   return (
     <>
-      <div className="w-full py-10 h-full rounded">
-        <div className="mx-auto w-[300px] bg-purple-300">
+      <div className="w-full py-10 h-full md:max-w-[500px] lg:h-auto rounded">
+        <div className="mx-auto w-[300px] md:max-w-[500px] bg-purple-300">
           <div className="text-center">
             <h3 className="text-3xl font-black mb-5">
               {currentSpotData.spot.name}
@@ -39,13 +41,19 @@ export default function CurrentSpotConditions({ currentSpotData }) {
           <div className="text-center">
             <h3 className="text-2xl font-bold">Swell Info</h3>
             {swells.slice(0, 3).map((swellItem, index) => (
-              <p key={index}>
+              <div key={index}>
                 {swellItem.height !== 0
                   ? `${swellItem.height}ft @ ${
                       swellItem.period
                     } secs from ${Math.round(swellItem.direction)}°`
-                  : null}
-              </p>
+                  : null}{" "}
+                {swellItem.height !== 0 ? (
+                  <FontAwesomeIcon
+                    icon={faDownLong}
+                    style={{ transform: `rotateZ(${swellItem.direction}deg)` }}
+                  />
+                ) : null}
+              </div>
             ))}
           </div>
           <div className="text-center">
@@ -58,7 +66,7 @@ export default function CurrentSpotConditions({ currentSpotData }) {
               <FontAwesomeIcon
                 icon={faArrowDown}
                 style={{ transform: `rotateZ(${wind.direction}deg)` }}
-                size="2x"
+                size="3x"
               />
             </div>
             {getWindDirection(Math.round(wind.direction))}{" "}
